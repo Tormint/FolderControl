@@ -33,6 +33,26 @@ void AboutQt::createObjects()
 {
     Window::createObjects();
 
+    lCreatorT = new QLabel("<b><u>IDE Used:</u></b>");
+
+    lCreator = new QLabel("Qt Creator 7.0.0 [Qt 6.2.3 (Revision 638b93591b)]");
+
+    lCopyrightT = new QLabel("<b><u>Copyright:</u></b>");
+
+    lCopyright = new QLabel("Copyright 2008-2022 The Qt Company Ltd. All rights reserved.");
+
+    lVersionT = new QLabel("<b><u>Compiled Using:</u></b>");
+
+    lVersion = new QLabel("Qt C++ 6.3.0");
+
+    lCompiler = new QLabel("MinGW-64 11.2.0");
+
+    lUrlT = new QLabel("<b><u>Website:</u></b>");
+
+    lUrl = new QLabel("https://www.qt.io/");
+
+    pLogo = new QPixmap();
+
     return;
 }
 
@@ -48,6 +68,30 @@ void AboutQt::configureObjects()
 void AboutQt::placeObjects()
 {
     Window::placeObjects();
+
+    if (pLogo->load(":/img/logo.png"))
+    {
+        lLogo->setPixmap(*pLogo);
+        glMainLayout->addWidget(lLogo, 0, 0, 4, 4);
+    }
+
+    glMainLayout->addWidget(lCreatorT, 0, 0, 1, 2, Qt::AlignLeft);
+
+    glMainLayout->addWidget(lCreator, 0, 2, 1, 4, Qt::AlignRight);
+
+    glMainLayout->addWidget(lVersionT, 1, 0, 1, 2, Qt::AlignLeft);
+
+    glMainLayout->addWidget(lVersion, 1, 2, 1, 4, Qt::AlignRight);
+
+    glMainLayout->addWidget(lCompiler, 2, 2, 1, 4, Qt::AlignRight);
+
+    glMainLayout->addWidget(lCopyrightT, 3, 0, 1, 2, Qt::AlignLeft);
+
+    glMainLayout->addWidget(lCopyright, 3, 2, 1, 4, Qt::AlignRight);
+
+    glMainLayout->addWidget(lUrlT, 4, 0, 1, 3, Qt::AlignLeft);
+
+    glMainLayout->addWidget(lUrl, 4, 2, 1, 4, Qt::AlignRight);
 
     return;
 }

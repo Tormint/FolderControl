@@ -28,6 +28,8 @@
 #include "../window.h"
 
 #include <QObject>
+#include <QLabel>
+#include <QPixmap>
 
 class AboutQt : public Window
 {
@@ -43,8 +45,22 @@ protected:
     void createObjects();
     void configureObjects();
     void placeObjects();
-    //void connectObjects();
-    //void disconnectObjects();
+
+private:
+
+    QLabel *lCreatorT,
+           *lCreator,
+           *lCopyrightT,
+           *lCopyright,
+           *lVersionT,
+           *lVersion,
+           *lCompiler,
+           *lUrlT,
+           *lUrl,
+           *lLogo;
+
+    QPixmap *pLogo;
+
 };
 
 #endif // ABOUTQT_H

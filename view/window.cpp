@@ -49,6 +49,7 @@ void Window::createObjects()
 void Window::configureObjects()
 {
     dWindow->setWindowFlags(Qt::Dialog);
+    dWindow->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     dWindow->setAttribute(Qt::WA_DeleteOnClose);
 
@@ -62,6 +63,7 @@ void Window::configureObjects()
     saView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     saView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     saView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+    saView->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     saView->setFrameStyle(QFrame::NoFrame);
 
     return;
@@ -73,9 +75,9 @@ void Window::placeObjects()
 
     fView->setLayout(glMainLayout);
 
-    glMain->addWidget(saView, 0, 0, 5, 6, Qt::AlignCenter);
+    glMain->addWidget(saView, 0, 0, 15, 15);
 
-    glMain->addWidget(pbOk, 5, 2, 1, 6, Qt::AlignCenter);
+    glMain->addWidget(pbOk, 16, 7, 1, 1);
 
     dWindow->setLayout(glMain);
 

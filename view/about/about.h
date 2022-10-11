@@ -28,6 +28,7 @@
 #include "../window.h"
 
 #include <QObject>
+#include <QLabel>
 
 class About : public Window
 {
