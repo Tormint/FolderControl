@@ -25,27 +25,42 @@
 #ifndef ABOUT_H
 #define ABOUT_H
 
+//Base Class:
+
 #include "../window.h"
+
+//Qt Libs:
 
 #include <QObject>
 #include <QLabel>
 
+//Dialog containing information about the program.
 class About : public Window
 {
     Q_OBJECT
 
 public:
 
+    //Constructor.
     About(QObject *parent = NULL);
+
+    //Destructor.
     ~About();
 
 protected:
 
+    //Initializes the objects that will be used in the view.
+    //Extends the functions of the base class implementations.
     void createObjects();
+
+    //Configures the objects that will be used in the view.
+    //Extends the functions of the base class implementations.
     void configureObjects();
+
+    //Places the view objects in their perspective layouts and sets the layouts.
+    //Extends the functions of the base class implementations.
     void placeObjects();
-    //void connectObjects();
-    //void disconnectObjects();
+
 };
 
 #endif // ABOUT_H

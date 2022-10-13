@@ -23,15 +23,31 @@
 #include "interface.h"
 #include "./ui_interface.h"
 
+//Contstructor.
 Interface::Interface(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Interface)
 {
-    //Setup UI
+    //Setup Window
+
+    createObjects();
+    configureObjects();
+    placeObjects();
+    connectObjects();
+
+    return;
+}
+
+//Initializes the objects that will be used in the view.
+void Interface::createObjects()
+{
+    //Setup UI:
 
     ui->setupUi(this);
 
-    //Create Objects
+    //Setup Widgets:
+
+    ////Menu Objects:
 
     mbMenu = new QMenuBar();
 
@@ -53,18 +69,28 @@ Interface::Interface(QWidget *parent)
     aAbout = new QAction("About");
     aAboutQt = new QAction("About Qt");
 
+    abAbout = new About();
+
+    aqAbout = new AboutQt();
+
+    ////View Objects:
+
     twMain = new QTabWidget(this);
+
+    ////Tabs:
 
     tabDupe = new DuplicateFile();
     tabEmpty = new EmptyFolder();
     tabText = new TextFolder();
     tabJunk = new RemoveJunk();
 
-    abAbout = new About();
+    return;
+}
 
-    aqAbout = new AboutQt();
-
-    //Configure Objects
+//Configures the objects that will be used in the view.
+void Interface::configureObjects()
+{
+    //Menu Objects:
 
     aExit->setMenuRole(QAction::QuitRole);
 
@@ -117,9 +143,17 @@ Interface::Interface(QWidget *parent)
     aAbout->setShortcut(QKeySequence("Ctrl+A", QKeySequence::NativeText));
     aAboutQt->setShortcut(QKeySequence("Ctrl+Q", QKeySequence::NativeText));
 
-    //Place Objects
+    return;
+}
+
+//Places the view objects in their perspective layouts and sets the layouts.
+void Interface::placeObjects()
+{
+    //Menu Objects:
 
     Interface::setMenuBar(mbMenu);
+
+    //View Objects:
 
     Interface::setCentralWidget(twMain);
 
@@ -128,11 +162,17 @@ Interface::Interface(QWidget *parent)
     twMain->addTab(tabText->getTab(), "Text To Folder");
     twMain->addTab(tabJunk->getTab(), "Remove Junk Files");
 
-    //Connect Objects
+    return;
+}
+
+//Connects the objects to their functional and managing code sources.
+void Interface::connectObjects()
+{
+    //Menu Objects:
 
     QObject::connect(aExit, SIGNAL(triggered(bool)), this, SLOT(close()));
 
-    //QObject::connect(aSetting, SIGNAL(triggered(bool)), this, SLOT(close()));
+    ////QObject::connect(aSetting, SIGNAL(triggered(bool)), this, SLOT());
 
     QObject::connect(aDupe, &QAction::triggered, [this]()
     {
@@ -160,6 +200,7 @@ Interface::Interface(QWidget *parent)
     return;
 }
 
+//Destructor.
 Interface::~Interface()
 {
     delete ui;

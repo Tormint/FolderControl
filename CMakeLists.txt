@@ -35,6 +35,7 @@ set(PROJECT_SOURCES
         view/about/about.h
         view/about/aboutqt.cpp
         view/about/aboutqt.h
+        res.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

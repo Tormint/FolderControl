@@ -25,7 +25,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "tab.h"
+//Qt Libs:
 
 #include <QObject>
 #include <QDialog>
@@ -34,40 +34,73 @@
 #include <QScrollArea>
 #include <QFrame>
 
+//Base class for all dialog windows.
 class Window : public QObject
 {
     Q_OBJECT
 
 public:
 
+    //Constructor.
     Window(QObject* parent = NULL);
+
+    //Destructor.
     ~Window();
 
 protected:
 
+    //Inheritance Objects:
+
+    //The window itself.
+    //Used to set window properties.
     QDialog *dWindow;
 
+    //The main layout of the window.
+    //Used to modify the appearance of the window.
     QGridLayout *glMainLayout;
 
-    QPushButton *pbOk;
+    //Member Functions:
 
+    //Initializes the objects that will be used in the view.
     virtual void createObjects();
+
+    //Configures the objects that will be used in the view.
     virtual void configureObjects();
+
+    //Places the view objects in their perspective layouts and sets the layouts.
     virtual void placeObjects();
+
+    //Connects the objects to their functional and managing code sources.
     virtual void connectObjects();
+
+    //Disconnects objects from their functional and managing code sources.
     virtual void disconnectObjects();
+
+    //Sets the window icon to the selected file.
+    void setIcon(QString file);
 
 private:
 
+    //Structural Objects:
+
+    //Central layout of the view.
     QGridLayout *glMain;
 
+    //Frame to enable QScrollArea to function correctly.
     QFrame *fView;
 
+    //Scroll Area to make the view adapt to any interface configuration.
     QScrollArea *saView;
+
+    //Confirmation button that also closes the window.
+    QPushButton *pbOk;
 
 public slots:
 
+    //Initializes and shows the window.
     void show();
+
+    //Closes and destroys the window.
     void close();
 };
 

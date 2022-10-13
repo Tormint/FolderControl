@@ -24,11 +24,38 @@
 
 #include "tab.h"
 
+//Qt Libs:
+
 #include <QInputDialog>
 #include <QMessageBox>
 
+//Constructor.
 Tab::Tab(QObject *parent) : QObject(parent)
 {
+    //Setup Tab:
+
+    init();
+
+    return;
+}
+
+//Returns a tab widget(pointer) to be inserted into a view.
+QScrollArea* Tab::getTab()
+{
+    return saView;
+}
+
+//Returns a layout(pointer) to add widgets onto the tab.
+QGridLayout* Tab::getLayout()
+{
+    return glMainLayout;
+}
+
+//Initializes the derived class.
+void Tab::init()
+{
+    //Setup Derived Class:
+
     createObjects();
     configureObjects();
     placeObjects();
@@ -37,16 +64,9 @@ Tab::Tab(QObject *parent) : QObject(parent)
     return;
 }
 
-QScrollArea* Tab::getTab()
-{
-    return saView;
-}
-
-QGridLayout* Tab::getLayout()
-{
-    return glMainLayout;
-}
-
+//Initializes the objects that will be used in the view.
+//Provides some function.
+//Should be used along with its derived implementations.
 void Tab::createObjects()
 {
     fView = new QFrame();
@@ -75,6 +95,9 @@ void Tab::createObjects()
     return;
 }
 
+//Configures the objects that will be used in the view.
+//Provides some function.
+//Should be used along with its derived implementations.
 void Tab::configureObjects()
 {
     fView->setFrameShape(QFrame::NoFrame);
@@ -105,6 +128,9 @@ void Tab::configureObjects()
     return;
 }
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Provides some function.
+//Should be used along with its derived implementations.
 void Tab::placeObjects()
 {
     saView->setWidget(fView);
@@ -122,6 +148,9 @@ void Tab::placeObjects()
     return;
 }
 
+//Connects the objects to their functional and managing code sources.
+//Provides some function.
+//Should be used along with its derived implementations.
 void Tab::connectObjects()
 {
     QObject::connect(cbPreset, SIGNAL(currentIndexChanged(int)), this, SLOT(updatePreset(int)));
@@ -132,6 +161,7 @@ void Tab::connectObjects()
     return;
 }
 
+//Slot for the Save button being clicked.
 void Tab::savePreset()
 {
     updateOutput("Saving Preset...");
@@ -170,6 +200,7 @@ void Tab::savePreset()
     return;
 }
 
+//Slot for the Delete button being clicked.
 void Tab::deletePreset()
 {
     updateOutput("Deleting Preset...");
@@ -206,6 +237,7 @@ void Tab::deletePreset()
     return;
 }
 
+//Provides a standard method to provide program feedback.
 void Tab::updateOutput(QString output)
 {
     lOutput->setText(output);
@@ -213,6 +245,7 @@ void Tab::updateOutput(QString output)
     return;
 }
 
+//DEstructor.
 Tab::~Tab()
 {
     return;

@@ -25,41 +25,57 @@
 #ifndef ABOUTQT_H
 #define ABOUTQT_H
 
+//Base Class:
+
 #include "../window.h"
 
-#include <QObject>
-#include <QLabel>
-#include <QPixmap>
+//Qt Libs:
 
+#include <QObject>
+#include <QPixmap>
+#include <QLabel>
+
+//Dialog containing infromation about Qt Framework.
 class AboutQt : public Window
 {
     Q_OBJECT
 
 public:
 
+    //Constructor.
     AboutQt(QObject *parent = NULL);
+
+    //Destructor.
     ~AboutQt();
 
 protected:
 
+    //Initializes the objects that will be used in the view.
+    //Extends the functions of the base class implementations.
     void createObjects();
+
+    //Configures the objects that will be used in the view.
+    //Extends the functions of the base class implementations.
     void configureObjects();
+
+    //Places the view objects in their perspective layouts and sets the layouts.
+    //Extends the functions of the base class implementations.
     void placeObjects();
 
 private:
 
-    QLabel *lCreatorT,
+    //View Objects:
+
+    QPixmap *pLogo;
+
+    QLabel *lLogo,
+           *lCreatorT,
            *lCreator,
-           *lCopyrightT,
-           *lCopyright,
            *lVersionT,
            *lVersion,
            *lCompiler,
-           *lUrlT,
-           *lUrl,
-           *lLogo;
-
-    QPixmap *pLogo;
+           *lCopyright,
+           *lUrl;
 
 };
 

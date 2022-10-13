@@ -24,16 +24,28 @@
 
 #include "textfolder.h"
 
+//Qt Libs:
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFileInfo>
 
+//Constructor.
 TextFolder::TextFolder(QObject *parent) : Tab(parent)
 {
-    //Create Objects
+    //Setup Tab:
 
+    init();
+
+    return;
+}
+
+//Initializes the objects that will be used in the view.
+//Extends the functions of the base class implementations.
+void TextFolder::createObjects()
+{
     leDirectory = new QLineEdit();
 
     leImport = new QLineEdit();
@@ -56,7 +68,6 @@ TextFolder::TextFolder(QObject *parent) : Tab(parent)
     glDirectory = new QGridLayout();
     glImport = new QGridLayout();
 
-    //hblPreset = new QHBoxLayout();
     hblDirectory = new QHBoxLayout();
     hblImport = new QHBoxLayout();
     hblFolder = new QHBoxLayout();
@@ -78,8 +89,13 @@ TextFolder::TextFolder(QObject *parent) : Tab(parent)
 
     pbStatus = new QProgressBar();
 
-    //Configure Objects
+    return;
+}
 
+//Configures the objects that will be used in the view.
+//Extends the functions of the base class implementations.
+void TextFolder::configureObjects()
+{
     leDirectory->setPlaceholderText("Enter destination directory here...");
     leImport->setPlaceholderText("Enter file or folder to import here...");
 
@@ -189,8 +205,13 @@ TextFolder::TextFolder(QObject *parent) : Tab(parent)
     fsmDirectory->sort(0, Qt::AscendingOrder);
     fsmImport->sort(0, Qt::AscendingOrder);
 
-    //Place Objects
+    return;
+}
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Extends the functions of the base class implementations.
+void TextFolder::placeObjects()
+{
     hblDirectory->addWidget(leDirectory);
     hblDirectory->addWidget(pbSelect);
 
@@ -240,8 +261,13 @@ TextFolder::TextFolder(QObject *parent) : Tab(parent)
     glMainLayout->addWidget(pbClear, 17, 4, 1, 1);
     glMainLayout->addWidget(pbStart, 17, 5, 1, 1);
 
-    //Connect Objects
+    return;
+}
 
+//Connects the objects to their functional and managing code sources.
+//Extends the functions of the base class implementations.
+void TextFolder::connectObjects()
+{
     QObject::connect(pbSelect, SIGNAL(clicked(bool)), this, SLOT(selectFolder()));
     QObject::connect(pbImport, SIGNAL(clicked(bool)), this, SLOT(selectFile()));
 
@@ -267,36 +293,22 @@ TextFolder::TextFolder(QObject *parent) : Tab(parent)
     return;
 }
 
-void TextFolder::createObjects()
-{
-    return;
-}
-
-void TextFolder::configureObjects()
-{
-    return;
-}
-
-void TextFolder::placeObjects()
-{
-    return;
-}
-
-void TextFolder::connectObjects()
-{
-    return;
-}
-
+//Creates and stores preconfigurations.
+//Overrides base class implementation.
 void TextFolder::createPreset(int index)
 {
     return;
 }
 
+//Removes and deletes preconfigurations.
+//Overrides base class implementation.
 void TextFolder::removePreset(int index)
 {
     return;
 }
 
+//File selection dialog.
+//Triggered by clicking the Import button.
 void TextFolder::selectFile()
 {
     //To select both files and folders will require a custom implementation
@@ -321,6 +333,8 @@ void TextFolder::selectFile()
     return;
 }
 
+//Folder selection dialog.
+//Triggered by clicking the Select button.
 void TextFolder::selectFolder()
 {
     updateOutput("Selecting Folder...");
@@ -341,6 +355,8 @@ void TextFolder::selectFolder()
     return;
 }
 
+//Implementation that adjusts the preconfigured selection based on current settings.
+//Triggered by changing settings.
 void TextFolder::updatePreset(int index) //Duplicate
 {
     updateOutput("Loading Settings...");
@@ -356,6 +372,8 @@ void TextFolder::updatePreset(int index) //Duplicate
     return;
 }
 
+//Copies a folder structure into the view.
+//Triggered by clicking the 'Copy' button.
 void TextFolder::copyLayout()
 {
     updateOutput("Copying Layout...");
@@ -388,6 +406,8 @@ void TextFolder::copyLayout()
     return;
 }
 
+//Starts the scan.
+//Triggered by clicking the 'Start'/'Scan' button.
 void TextFolder::startProcess()
 {
     updateOutput("Started...");
@@ -415,6 +435,8 @@ void TextFolder::startProcess()
     return;
 }
 
+//Restores default settings.
+//Triggered by clicking the 'Clear' button.
 void TextFolder::clearSettings()
 {
     updateOutput("Clearing Settings...");
@@ -454,6 +476,8 @@ void TextFolder::clearSettings()
     return;
 }
 
+//Changes the settings.
+//Triggered by a change in preset selection.
 void TextFolder::updateSettings()
 {
     updateOutput("Updating Settings...");
@@ -469,6 +493,8 @@ void TextFolder::updateSettings()
     return;
 }
 
+//Makes the Directory Tree View widget visible.
+//Triggered by clicking the expand button.
 void TextFolder::expandDirectory()
 {
     if (fDirectory->isVisible())
@@ -487,6 +513,8 @@ void TextFolder::expandDirectory()
     return;
 }
 
+//Makes the Import Tree View widget visible.
+//Triggered by clicking the expand button.
 void TextFolder::expandImport()
 {
     if (fImport->isVisible())
@@ -505,6 +533,8 @@ void TextFolder::expandImport()
     return;
 }
 
+//Sets the Directory Tree View to match the Line Edit address.
+//Triggered by changing the Line Edit text.
 void TextFolder::updateDirModelLocation()
 {
     leDirectory->blockSignals(true);
@@ -523,6 +553,8 @@ void TextFolder::updateDirModelLocation()
     return;
 }
 
+//Sets the Import Tree View to match the Line Edit address.
+//Triggered by changing the Line Edit text.
 void TextFolder::updateImpModelLocation()
 {
     leImport->blockSignals(true);
@@ -541,6 +573,8 @@ void TextFolder::updateImpModelLocation()
     return;
 }
 
+//Sets the Directory Line Edit to match the Tree View address.
+//Triggered by changing the Tree View selection.
 void TextFolder::updateDirectory()
 {
     leDirectory->blockSignals(true);
@@ -554,6 +588,8 @@ void TextFolder::updateDirectory()
     return;
 }
 
+//Sets the Import Line Edit to match the Tree View address.
+//Triggered by changing the Tree View selection.
 void TextFolder::updateImport()
 {
     leImport->blockSignals(true);
@@ -567,6 +603,7 @@ void TextFolder::updateImport()
     return;
 }
 
+//Destructor.
 TextFolder::~TextFolder()
 {
     return;

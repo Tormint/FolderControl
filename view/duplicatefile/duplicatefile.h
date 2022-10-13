@@ -25,28 +25,52 @@
 #ifndef DUPLICATEFILE_H
 #define DUPLICATEFILE_H
 
+//Base Class:
+
 #include "../tab.h"
+
+//Qt Libs:
 
 #include <QObject>
 #include <QProperty>
 
+//'Duplicate Finder' tab interface.
 class DuplicateFile : public Tab
 {
     Q_OBJECT
 
 public:
 
+    //Constructor.
     DuplicateFile(QObject* parent = NULL);
+
+    //Destructor.
     ~DuplicateFile();
 
 protected:
 
+    //Initializes the objects that will be used in the view.
+    //Extends the functions of the base class implementations.
     void createObjects();
+
+    //Configures the objects that will be used in the view.
+    //Extends the functions of the base class implementations.
     void configureObjects();
+
+    //Places the view objects in their perspective layouts and sets the layouts.
+    //Extends the functions of the base class implementations.
     void placeObjects();
+
+    //Connects the objects to their functional and managing code sources.
+    //Extends the functions of the base class implementations.
     void connectObjects();
 
+    //Creates and stores preconfigurations.
+    //Overrides base class implementation.
     void createPreset(int index) override;
+
+    //Removes and deletes preconfigurations.
+    //Overrides base class implementation.
     void removePreset(int index) override;
 
 private:

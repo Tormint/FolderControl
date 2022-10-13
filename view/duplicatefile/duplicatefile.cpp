@@ -24,8 +24,15 @@
 
 #include "duplicatefile.h"
 
+#include <QPixmap>
+#include <QLabel>
+
 DuplicateFile::DuplicateFile(QObject *parent) : Tab(parent)
 {
+    //Setup Tab:
+
+    init();
+
     return;
 }
 

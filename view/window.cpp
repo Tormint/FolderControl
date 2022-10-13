@@ -24,11 +24,17 @@
 
 #include "window.h"
 
+//Qt Libs:
+
+#include <QIcon>
+
+//Constructor.
 Window::Window(QObject* parent) : QObject(parent)
 {
     return;
 }
 
+//Initializes the objects that will be used in the view.
 void Window::createObjects()
 {
     dWindow = new QDialog();
@@ -46,6 +52,7 @@ void Window::createObjects()
     return;
 }
 
+//Configures the objects that will be used in the view.
 void Window::configureObjects()
 {
     dWindow->setWindowFlags(Qt::Dialog);
@@ -60,8 +67,8 @@ void Window::configureObjects()
     fView->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 
     saView->setWidgetResizable(true);
-    saView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    saView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    //saView->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    //saView->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     saView->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
     saView->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
     saView->setFrameStyle(QFrame::NoFrame);
@@ -69,6 +76,7 @@ void Window::configureObjects()
     return;
 }
 
+//Places the view objects in their perspective layouts and sets the layouts.
 void Window::placeObjects()
 {
     saView->setWidget(fView);
@@ -84,6 +92,7 @@ void Window::placeObjects()
     return;
 }
 
+//Connects the objects to their functional and managing code sources.
 void Window::connectObjects()
 {
     QObject::connect(dWindow, dWindow->destroyed, [this]()
@@ -96,6 +105,7 @@ void Window::connectObjects()
     return;
 }
 
+//Disconnects objects from their functional and managing code sources.
 void Window::disconnectObjects()
 {
     QObject::connect(dWindow, dWindow->destroyed, [this]()
@@ -108,6 +118,17 @@ void Window::disconnectObjects()
     return;
 }
 
+//Sets the window icon to the selected file.
+void Window::setIcon(QString file)
+{
+    QIcon icon(file);
+
+    dWindow->setWindowIcon(icon);
+
+    return;
+}
+
+//Initializes and shows the window.
 void Window::show()
 {
     createObjects();
@@ -120,6 +141,7 @@ void Window::show()
     return;
 }
 
+//Closes and destroys the window.
 void Window::close()
 {
     if (dWindow != NULL)
@@ -134,6 +156,7 @@ void Window::close()
     return;
 }
 
+//Destructor.
 Window::~Window()
 {
     return;

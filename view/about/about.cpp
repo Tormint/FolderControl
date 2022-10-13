@@ -24,11 +24,14 @@
 
 #include "about.h"
 
+//Constructor.
 About::About(QObject *parent) : Window(parent)
 {
     return;
 }
 
+//Initializes the objects that will be used in the view.
+//Extends the functions of the base class implementations.
 void About::createObjects()
 {
     Window::createObjects();
@@ -36,6 +39,8 @@ void About::createObjects()
     return;
 }
 
+//Configures the objects that will be used in the view.
+//Extends the functions of the base class implementations.
 void About::configureObjects()
 {
     Window::configureObjects();
@@ -45,6 +50,8 @@ void About::configureObjects()
     return;
 }
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Extends the functions of the base class implementations.
 void About::placeObjects()
 {
     Window::placeObjects();
@@ -66,6 +73,7 @@ void About::placeObjects()
 //    return;
 //}
 
+//Destructor.
 About::~About()
 {
     return;

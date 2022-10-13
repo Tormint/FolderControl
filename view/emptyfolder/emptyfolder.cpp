@@ -24,23 +24,34 @@
 
 #include "emptyfolder.h"
 
+//Qt Libs:
+
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFileInfo>
 
+//Constructor.
 EmptyFolder::EmptyFolder(QObject *parent) : Tab(parent)
 {
-    //Create Objects
+    //Setup Tab:
 
+    init();
+
+    return;
+}
+
+//Initializes the objects that will be used in the view.
+//Extends the functions of the base class implementations.
+void EmptyFolder::createObjects()
+{
     leDirectory = new QLineEdit();
     leIgnore = new QLineEdit();
 
     rbAppend = new QRadioButton("Append");
     rbClear = new QRadioButton("Clear");
 
-    //teFolder = new QTextEdit();
     teIgnore = new QTextEdit();
 
     pbStart = new QPushButton("Start");
@@ -79,8 +90,13 @@ EmptyFolder::EmptyFolder(QObject *parent) : Tab(parent)
 
     pbStatus = new QProgressBar();
 
-    //Configure Objects
+    return;
+}
 
+//Configures the objects that will be used in the view.
+//Extends the functions of the base class implementations.
+void EmptyFolder::configureObjects()
+{
     rbAppend->setChecked(true);
 
     leDirectory->setPlaceholderText("Enter directory to scan here...");
@@ -215,8 +231,13 @@ EmptyFolder::EmptyFolder(QObject *parent) : Tab(parent)
 
     fsmDirectory->sort(0, Qt::AscendingOrder);
 
-    //Place Objects
+    return;
+}
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Extends the functions of the base class implementations.
+void EmptyFolder::placeObjects()
+{
     hblDirectory->addWidget(leDirectory);
     hblDirectory->addWidget(pbSelect);
 
@@ -267,8 +288,13 @@ EmptyFolder::EmptyFolder(QObject *parent) : Tab(parent)
     glMainLayout->addWidget(pbClear, 22, 4, 1, 1);
     glMainLayout->addWidget(pbStart, 22, 5, 1, 1);
 
-    //Connect Objects
+    return;
+}
 
+//Connects the objects to their functional and managing code sources.
+//Extends the functions of the base class implementations.
+void EmptyFolder::connectObjects()
+{
     QObject::connect(pbSelect, SIGNAL(clicked(bool)), this, SLOT(selectFolder()));
     QObject::connect(pbIgnore, SIGNAL(clicked(bool)), this, SLOT(selectFile()));
 
@@ -294,36 +320,22 @@ EmptyFolder::EmptyFolder(QObject *parent) : Tab(parent)
     return;
 }
 
-void EmptyFolder::createObjects()
-{
-    return;
-}
-
-void EmptyFolder::configureObjects()
-{
-    return;
-}
-
-void EmptyFolder::placeObjects()
-{
-    return;
-}
-
-void EmptyFolder::connectObjects()
-{
-    return;
-}
-
+//Creates and stores preconfigurations.
+//Overrides base class implementation.
 void EmptyFolder::createPreset(int index)
 {
     return;
 }
 
+//Removes and deletes preconfigurations.
+//Overrides base class implementation.
 void EmptyFolder::removePreset(int index)
 {
     return;
 }
 
+//File selection dialog.
+//Triggered by clicking the Import button.
 void EmptyFolder::selectFile()
 {
     //To select both files and folders will require a custom implementation
@@ -348,6 +360,8 @@ void EmptyFolder::selectFile()
     return;
 }
 
+//Folder selection dialog.
+//Triggered by clicking the Select button.
 void EmptyFolder::selectFolder()
 {
     updateOutput("Selecting Folder...");
@@ -368,6 +382,8 @@ void EmptyFolder::selectFolder()
     return;
 }
 
+//Implementation that adjusts the preconfigured selection based on current settings.
+//Triggered by changing settings.
 void EmptyFolder::updatePreset(int index) //Duplicate
 {
     updateOutput("Loading Settings...");
@@ -383,6 +399,8 @@ void EmptyFolder::updatePreset(int index) //Duplicate
     return;
 }
 
+//Copies a folder structure into the view.
+//Triggered by clicking the 'Copy' button.
 void EmptyFolder::copyLayout()
 {
     updateOutput("Copying Layout...");
@@ -415,6 +433,8 @@ void EmptyFolder::copyLayout()
     return;
 }
 
+//Starts the scan.
+//Triggered by clicking the 'Start'/'Scan' button.
 void EmptyFolder::startProcess()
 {
     updateOutput("Started...");
@@ -439,6 +459,8 @@ void EmptyFolder::startProcess()
     return;
 }
 
+//Restores default settings.
+//Triggered by clicking the 'Clear' button.
 void EmptyFolder::clearSettings()
 {
     updateOutput("Clearing Settings...");
@@ -476,6 +498,8 @@ void EmptyFolder::clearSettings()
     return;
 }
 
+//Changes the settings.
+//Triggered by a change in preset selection.
 void EmptyFolder::updateSettings()
 {
     updateOutput("Updating Settings...");
@@ -491,6 +515,8 @@ void EmptyFolder::updateSettings()
     return;
 }
 
+//Makes the Directory Tree View widget visible.
+//Triggered by clicking the expand button.
 void EmptyFolder::expandDirectory()
 {
     if (fDirectory->isVisible())
@@ -509,6 +535,8 @@ void EmptyFolder::expandDirectory()
     return;
 }
 
+//Makes the Ignore Tree View widget visible.
+//Triggered by clicking the expand button.
 void EmptyFolder::expandIgnore()
 {
     if (fIgnore->isVisible())
@@ -527,6 +555,8 @@ void EmptyFolder::expandIgnore()
     return;
 }
 
+//Sets the Directory Tree View to match the Line Edit address.
+//Triggered by changing the Line Edit text.
 void EmptyFolder::updateDirModelLocation()
 {
     leDirectory->blockSignals(true);
@@ -545,6 +575,8 @@ void EmptyFolder::updateDirModelLocation()
     return;
 }
 
+//Sets the Directory Tree View to match the Line Edit address.
+//Triggered by changing the Line Edit text.
 void EmptyFolder::updateIgnModelLocation()
 {
     leIgnore->blockSignals(true);
@@ -563,6 +595,8 @@ void EmptyFolder::updateIgnModelLocation()
     return;
 }
 
+//Sets the Directory Line Edit to match the Tree View address.
+//Triggered by changing the Tree View selection.
 void EmptyFolder::updateDirectory()
 {
     leDirectory->blockSignals(true);
@@ -576,6 +610,8 @@ void EmptyFolder::updateDirectory()
     return;
 }
 
+//Sets the Ignore Line Edit to match the Tree View address.
+//Triggered by changing the Tree View selection.
 void EmptyFolder::updateIgnore()
 {
     leIgnore->blockSignals(true);
@@ -589,6 +625,8 @@ void EmptyFolder::updateIgnore()
     return;
 }
 
+//Toggle between different view types.
+//Triggered by clicking the view icon.
 void EmptyFolder::toggleTreeList(bool checked)
 {
     if (checked)
@@ -605,6 +643,7 @@ void EmptyFolder::toggleTreeList(bool checked)
     return;
 }
 
+//Destructor.
 EmptyFolder::~EmptyFolder()
 {
     return;

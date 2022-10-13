@@ -24,74 +24,69 @@
 
 #include "aboutqt.h"
 
+//Constructor.
 AboutQt::AboutQt(QObject *parent) : Window(parent)
 {
     return;
 }
 
+//Initializes the objects that will be used in the view.
+//Extends the functions of the base class implementations.
 void AboutQt::createObjects()
 {
     Window::createObjects();
 
+    pLogo = new QPixmap("://img/qtlogo.png");
+
+    lLogo = new QLabel();
+
     lCreatorT = new QLabel("<b><u>IDE Used:</u></b>");
-
     lCreator = new QLabel("Qt Creator 7.0.0 [Qt 6.2.3 (Revision 638b93591b)]");
-
-    lCopyrightT = new QLabel("<b><u>Copyright:</u></b>");
-
-    lCopyright = new QLabel("Copyright 2008-2022 The Qt Company Ltd. All rights reserved.");
-
     lVersionT = new QLabel("<b><u>Compiled Using:</u></b>");
-
     lVersion = new QLabel("Qt C++ 6.3.0");
-
     lCompiler = new QLabel("MinGW-64 11.2.0");
-
-    lUrlT = new QLabel("<b><u>Website:</u></b>");
-
-    lUrl = new QLabel("https://www.qt.io/");
-
-    pLogo = new QPixmap();
+    lCopyright = new QLabel("<b><i>Copyright 2008-2022 The Qt Company Ltd. All rights reserved.</i></b>");
+    lUrl = new QLabel("<a href=https://www.qt.io/>www.qt.io</a>");
 
     return;
 }
 
+//Configures the objects that will be used in the view.
+//Extends the functions of the base class implementations.
 void AboutQt::configureObjects()
 {
     Window::configureObjects();
 
+    Window::setIcon("://img/qtlogo.png");
+
     dWindow->setWindowTitle("About Qt");
+
+    lUrl->setOpenExternalLinks(true);
+    lUrl->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
     return;
 }
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Extends the functions of the base class implementations.
 void AboutQt::placeObjects()
 {
     Window::placeObjects();
 
-    if (pLogo->load(":/img/logo.png"))
+    if (!pLogo->isNull())
     {
+        pLogo->scaled(QSize(80, 80), Qt::KeepAspectRatio, Qt::SmoothTransformation);
         lLogo->setPixmap(*pLogo);
-        glMainLayout->addWidget(lLogo, 0, 0, 4, 4);
+        glMainLayout->addWidget(lLogo, 0, 0, 3, 3);
     }
 
-    glMainLayout->addWidget(lCreatorT, 0, 0, 1, 2, Qt::AlignLeft);
-
-    glMainLayout->addWidget(lCreator, 0, 2, 1, 4, Qt::AlignRight);
-
-    glMainLayout->addWidget(lVersionT, 1, 0, 1, 2, Qt::AlignLeft);
-
-    glMainLayout->addWidget(lVersion, 1, 2, 1, 4, Qt::AlignRight);
-
-    glMainLayout->addWidget(lCompiler, 2, 2, 1, 4, Qt::AlignRight);
-
-    glMainLayout->addWidget(lCopyrightT, 3, 0, 1, 2, Qt::AlignLeft);
-
-    glMainLayout->addWidget(lCopyright, 3, 2, 1, 4, Qt::AlignRight);
-
-    glMainLayout->addWidget(lUrlT, 4, 0, 1, 3, Qt::AlignLeft);
-
-    glMainLayout->addWidget(lUrl, 4, 2, 1, 4, Qt::AlignRight);
+    glMainLayout->addWidget(lCreatorT, 0, 3, 1, 1, Qt::AlignLeft);
+    glMainLayout->addWidget(lCreator, 0, 4, 1, 2, Qt::AlignRight);
+    glMainLayout->addWidget(lVersionT, 1, 3, 1, 1, Qt::AlignLeft);
+    glMainLayout->addWidget(lVersion, 1, 4, 1, 2, Qt::AlignRight);
+    glMainLayout->addWidget(lCompiler, 2, 4, 1, 2, Qt::AlignRight);
+    glMainLayout->addWidget(lCopyright, 3, 0, 1, 6, Qt::AlignCenter);
+    glMainLayout->addWidget(lUrl, 4, 0, 1, 6, Qt::AlignCenter);
 
     return;
 }
@@ -110,6 +105,7 @@ void AboutQt::placeObjects()
 //    return;
 //}
 
+//Destructor.
 AboutQt::~AboutQt()
 {
     return;

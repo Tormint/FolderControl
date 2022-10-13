@@ -24,16 +24,28 @@
 
 #include "removejunk.h"
 
+//Qt Libs:
+
 #include <QFileDialog>
 #include <QHeaderView>
 #include <QMessageBox>
 #include <QFileInfo>
 #include <QRect>
 
+//Constructor.
 RemoveJunk::RemoveJunk()
 {
-    //Create Objects
+    //Setup Tab:
 
+    init();
+
+    return;
+}
+
+//Initializes the objects that will be used in the view.
+//Extends the functions of the base class implementations.
+void RemoveJunk::createObjects()
+{
     lRemove = new QLabel("Remove List:");
 
     lHelp = new QLabel("Format 1: \t\"file.jpg, *.avi, file.*" //HTML tags break QLabel.
@@ -78,8 +90,13 @@ RemoveJunk::RemoveJunk()
 
     pbStatus = new QProgressBar();
 
-    //Configure Objects
+    return;
+}
 
+//Configures the objects that will be used in the view.
+//Extends the functions of the base class implementations.
+void RemoveJunk::configureObjects()
+{
     leDirectory->setPlaceholderText("Enter directory to scan here...");
 
     leDirectory->setEnabled(true);
@@ -162,8 +179,13 @@ RemoveJunk::RemoveJunk()
 
     fsmDirectory->sort(0, Qt::AscendingOrder);
 
-    //Place Objects
+    return;
+}
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Extends the functions of the base class implementations.
+void RemoveJunk::placeObjects()
+{
     hblDirectory->addWidget(leDirectory);
     hblDirectory->addWidget(pbSelect);
 
@@ -206,8 +228,13 @@ RemoveJunk::RemoveJunk()
     glMainLayout->addWidget(pbClear, 14, 4, 1, 1);
     glMainLayout->addWidget(pbStart, 14, 5, 1, 1);
 
-    //Connect Objects
+    return;
+}
 
+//Connects the objects to their functional and managing code sources.
+//Extends the functions of the base class implementations.
+void RemoveJunk::connectObjects()
+{
     QObject::connect(pbSelect, SIGNAL(clicked(bool)), this, SLOT(selectFolder()));
 
     QObject::connect(pbStart, SIGNAL(clicked(bool)), this, SLOT(startProcess()));
@@ -231,36 +258,22 @@ RemoveJunk::RemoveJunk()
     return;
 }
 
-void RemoveJunk::createObjects()
-{
-    return;
-}
-
-void RemoveJunk::configureObjects()
-{
-    return;
-}
-
-void RemoveJunk::placeObjects()
-{
-    return;
-}
-
-void RemoveJunk::connectObjects()
-{
-    return;
-}
-
+//Creates and stores preconfigurations.
+//Overrides base class implementation.
 void RemoveJunk::createPreset(int index)
 {
     return;
 }
 
+//Removes and deletes preconfigurations.
+//Overrides base class implementation.
 void RemoveJunk::removePreset(int index)
 {
     return;
 }
 
+//Folder selection dialog.
+//Triggered by clicking the Select button.
 void RemoveJunk::selectFolder()
 {
     updateOutput("Selecting Folder...");
@@ -279,6 +292,8 @@ void RemoveJunk::selectFolder()
     return;
 }
 
+//Implementation that adjusts the preconfigured selection based on current settings.
+//Triggered by changing settings.
 void RemoveJunk::updatePreset(int index)
 {
     updateOutput("Loading Settings...");
@@ -294,6 +309,8 @@ void RemoveJunk::updatePreset(int index)
     return;
 }
 
+//Starts the scan.
+//Triggered by clicking the 'Start'/'Scan' button.
 void RemoveJunk::startProcess()
 {
     updateOutput("Started...");
@@ -318,6 +335,8 @@ void RemoveJunk::startProcess()
     return;
 }
 
+//Restores default settings.
+//Triggered by clicking the 'Clear' button.
 void RemoveJunk::clearSettings()
 {
     updateOutput("Clearing Settings...");
@@ -352,6 +371,8 @@ void RemoveJunk::clearSettings()
     return;
 }
 
+//Changes the settings.
+//Triggered by a change in preset selection.
 void RemoveJunk::updateSettings()
 {
     updateOutput("Updating Settings...");
@@ -367,6 +388,8 @@ void RemoveJunk::updateSettings()
     return;
 }
 
+//Makes the Directory Tree View widget visible.
+//Triggered by clicking the expand button.
 void RemoveJunk::expandDirectory()
 {
     if (fDirectory->isVisible())
@@ -385,6 +408,8 @@ void RemoveJunk::expandDirectory()
     return;
 }
 
+//Expands the help section.
+//Triggered by clicking the help icon.
 void RemoveJunk::expandHelp()
 {
     if (fHelp->isVisible())
@@ -401,6 +426,8 @@ void RemoveJunk::expandHelp()
     return;
 }
 
+//Sets the Directory Tree View to match the Line Edit address.
+//Triggered by changing the Line Edit text.
 void RemoveJunk::updateDirModelLocation()
 {
     leDirectory->blockSignals(true);
@@ -419,6 +446,8 @@ void RemoveJunk::updateDirModelLocation()
     return;
 }
 
+//Sets the Import Line Edit to match the Tree View address.
+//Triggered by changing the Tree View selection.
 void RemoveJunk::updateDirectory()
 {
     leDirectory->blockSignals(true);
@@ -432,6 +461,7 @@ void RemoveJunk::updateDirectory()
     return;
 }
 
+//Destructor.
 RemoveJunk::~RemoveJunk()
 {
     if (!fHelp->isVisible())
