@@ -134,7 +134,7 @@ void EmptyFolder::configureObjects()
 
     pbStart->setMinimumWidth(80);
     pbClear->setMinimumWidth(80);
-    pbCopy->setMaximumWidth(80);
+    pbCopy->setMinimumWidth(80);
 
     pbTreeList->setMaximumWidth(40);
 
