@@ -260,14 +260,16 @@ void RemoveJunk::connectObjects()
 
 //Creates and stores preconfigurations.
 //Overrides base class implementation.
-void RemoveJunk::createPreset(int index)
+////index(int): refers to the new preset value.
+void RemoveJunk::createPreset(const int index)
 {
     return;
 }
 
 //Removes and deletes preconfigurations.
 //Overrides base class implementation.
-void RemoveJunk::removePreset(int index)
+////index(int): refers to the value of the preset to be removed.
+void RemoveJunk::removePreset(const int index)
 {
     return;
 }
@@ -294,7 +296,8 @@ void RemoveJunk::selectFolder()
 
 //Implementation that adjusts the preconfigured selection based on current settings.
 //Triggered by changing settings.
-void RemoveJunk::updatePreset(int index)
+////index(int): refers to the index that will be applied.
+void RemoveJunk::updatePreset(const int index)
 {
     updateOutput("Loading Settings...");
 

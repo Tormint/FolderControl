@@ -295,14 +295,16 @@ void TextFolder::connectObjects()
 
 //Creates and stores preconfigurations.
 //Overrides base class implementation.
-void TextFolder::createPreset(int index)
+////index(int): refers to the new preset value.
+void TextFolder::createPreset(const int index)
 {
     return;
 }
 
 //Removes and deletes preconfigurations.
 //Overrides base class implementation.
-void TextFolder::removePreset(int index)
+////index(int): refers to the value of the preset to be removed.
+void TextFolder::removePreset(const int index)
 {
     return;
 }
@@ -357,7 +359,8 @@ void TextFolder::selectFolder()
 
 //Implementation that adjusts the preconfigured selection based on current settings.
 //Triggered by changing settings.
-void TextFolder::updatePreset(int index) //Duplicate
+////index(int): refers to the index that will be applied.
+void TextFolder::updatePreset(const int index) //Duplicate
 {
     updateOutput("Loading Settings...");
 

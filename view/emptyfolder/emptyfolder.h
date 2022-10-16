@@ -80,11 +80,13 @@ protected:
 
     //Creates and stores preconfigurations.
     //Overrides base class implementation.
-    void createPreset(int index) override;
+    ////index(int): refers to the new preset value.
+    void createPreset(const int index) override;
 
     //Removes and deletes preconfigurations.
     //Overrides base class implementation.
-    void removePreset(int index) override;
+    ////index(int): refers to the value of the preset to be removed.
+    void removePreset(const int index) override;
 
 private:
 
@@ -146,7 +148,8 @@ public slots:
 
     //Implementation that adjusts the preconfigured selection based on current settings.
     //Triggered by changing settings.
-    void updatePreset(int index) override;
+    ////index(int): refers to the index that will be applied.
+    void updatePreset(const int index) override;
 
     //Copies a folder structure into the view.
     //Triggered by clicking the 'Copy' button.
@@ -190,7 +193,8 @@ public slots:
 
     //Toggle between different view types.
     //Triggered by clicking the view icon.
-    void toggleTreeList(bool checked);
+    ////checked(bool): refers to the checked state of the toggle button.
+    void toggleTreeList(const bool checked);
 
 };
 

@@ -322,14 +322,16 @@ void EmptyFolder::connectObjects()
 
 //Creates and stores preconfigurations.
 //Overrides base class implementation.
-void EmptyFolder::createPreset(int index)
+////index(int): refers to the new preset value.
+void EmptyFolder::createPreset(const int index)
 {
     return;
 }
 
 //Removes and deletes preconfigurations.
 //Overrides base class implementation.
-void EmptyFolder::removePreset(int index)
+////index(int): refers to the value of the preset to be removed.
+void EmptyFolder::removePreset(const int index)
 {
     return;
 }
@@ -384,7 +386,8 @@ void EmptyFolder::selectFolder()
 
 //Implementation that adjusts the preconfigured selection based on current settings.
 //Triggered by changing settings.
-void EmptyFolder::updatePreset(int index) //Duplicate
+////index(int): refers to the index that will be applied.
+void EmptyFolder::updatePreset(const int index) //Duplicate
 {
     updateOutput("Loading Settings...");
 
@@ -627,7 +630,8 @@ void EmptyFolder::updateIgnore()
 
 //Toggle between different view types.
 //Triggered by clicking the view icon.
-void EmptyFolder::toggleTreeList(bool checked)
+////checked(bool): refers to the checked state of the toggle button.
+void EmptyFolder::toggleTreeList(const bool checked)
 {
     if (checked)
     {

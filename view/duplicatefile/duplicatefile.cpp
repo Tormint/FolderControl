@@ -27,6 +27,7 @@
 #include <QPixmap>
 #include <QLabel>
 
+//Constructor.
 DuplicateFile::DuplicateFile(QObject *parent) : Tab(parent)
 {
     //Setup Tab:
@@ -36,41 +37,59 @@ DuplicateFile::DuplicateFile(QObject *parent) : Tab(parent)
     return;
 }
 
+//Initializes the objects that will be used in the view.
+//Extends the functions of the base class implementations.
 void DuplicateFile::createObjects()
 {
     return;
 }
 
+//Configures the objects that will be used in the view.
+//Extends the functions of the base class implementations.
 void DuplicateFile::configureObjects()
 {
     return;
 }
 
+//Places the view objects in their perspective layouts and sets the layouts.
+//Extends the functions of the base class implementations.
 void DuplicateFile::placeObjects()
 {
     return;
 }
 
+//Connects the objects to their functional and managing code sources.
+//Extends the functions of the base class implementations.
 void DuplicateFile::connectObjects()
 {
     return;
 }
 
-void DuplicateFile::createPreset(int index)
+//Creates and stores preconfigurations.
+//Overrides base class implementation.
+////index(int): refers to the new preset value.
+void DuplicateFile::createPreset(const int index)
 {
     return;
 }
 
-void DuplicateFile::removePreset(int index)
+//Removes and deletes preconfigurations.
+//Overrides base class implementation.
+////index(int): refers to the value of the preset to be removed.
+void DuplicateFile::removePreset(const int index)
 {
     return;
 }
 
-void DuplicateFile::updatePreset(int index)
+//Implementation that adjusts the preconfigured selection based on current settings.
+//Triggered by changing settings.
+////index(int): refers to the index that will be applied.
+void DuplicateFile::updatePreset(const int index)
 {
     return;
 }
 
+//Destructor.
 DuplicateFile::~DuplicateFile()
 {
     return;

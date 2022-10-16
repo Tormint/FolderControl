@@ -33,6 +33,8 @@
 
 #include <QObject>
 #include <QLabel>
+#include <QPixmap>
+#include <QPushButton>
 
 //Dialog containing information about the program.
 class About : public Window
@@ -60,6 +62,41 @@ protected:
     //Places the view objects in their perspective layouts and sets the layouts.
     //Extends the functions of the base class implementations.
     void placeObjects();
+
+    //Connects the objects to their functional and managing code sources.
+    //Extends the functions of the base class implementations.
+    virtual void connectObjects();
+
+    //Disconnects objects from their functional and managing code sources.
+    //Extends the functions of the base class implementations.
+    virtual void disconnectObjects();
+
+private:
+
+    //View Objects:
+
+    QLabel *lIntro,
+           *lDeveloperT,
+           *lDeveloper,
+           *lLicenseT,
+           *lLicense,
+           *lGithubT,
+           *lGithub,
+           *lMessage,
+           *lPaypalT,
+           *lPaypal,
+           *lDonate,
+           *lInfo;
+
+    QPixmap *pDonate,
+            *pInfo;
+
+    QPushButton *pbDonate;
+
+public slots:
+
+    //Opens Paypal link in browser.
+    void linkPaypal();
 
 };
 

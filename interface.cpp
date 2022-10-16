@@ -132,7 +132,9 @@ void Interface::configureObjects()
     aText->setIcon(Interface::style()->standardIcon(QStyle::SP_FileIcon));
     aJunk->setIcon(Interface::style()->standardIcon(QStyle::SP_FileIcon));
     aAbout->setIcon(Interface::style()->standardIcon(QStyle::SP_MessageBoxQuestion));
-    aAboutQt->setIcon(Interface::style()->standardIcon(QStyle::SP_MessageBoxQuestion));
+
+    aAboutQt->setIcon(QIcon("://img/qtlogo.png"));
+    //aAboutQt->setIcon(Interface::style()->standardIcon(QIcon("://img/qtlogo.png")));
 
     aExit->setShortcut(QKeySequence("Alt+F4", QKeySequence::NativeText));
     aSetting->setShortcut(QKeySequence("Ctrl+S", QKeySequence::NativeText));

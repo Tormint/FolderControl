@@ -32,7 +32,7 @@
 //Qt Libs:
 
 #include <QObject>
-#include <QProperty>
+//#include <QProperty>
 
 //'Duplicate Finder' tab interface.
 class DuplicateFile : public Tab
@@ -67,11 +67,13 @@ protected:
 
     //Creates and stores preconfigurations.
     //Overrides base class implementation.
-    void createPreset(int index) override;
+    ////index(int): refers to the new preset value.
+    void createPreset(const int index) override;
 
     //Removes and deletes preconfigurations.
     //Overrides base class implementation.
-    void removePreset(int index) override;
+    ////index(int): refers to the value of the preset to be removed.
+    void removePreset(const int index) override;
 
 private:
 
@@ -79,7 +81,10 @@ private:
 
 public slots:
 
-    void updatePreset(int index) override;
+    //Implementation that adjusts the preconfigured selection based on current settings.
+    //Triggered by changing settings.
+    ////index(int): refers to the index that will be applied.
+    void updatePreset(const int index) override;
 
 };
 

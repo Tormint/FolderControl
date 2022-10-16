@@ -102,10 +102,12 @@ protected:
     virtual void connectObjects();
 
     //Pure Virtual definition to create preconfigurations for derived classes.
-    virtual void createPreset(int index) = 0;
+    ////index(int): refers to the new preset value.
+    virtual void createPreset(const int index) = 0;
 
     //Pure Virtual definition to remove preconfigurations for derived classes.
-    virtual void removePreset(int index) = 0;
+    ////index(int): refers to the value of the preset to be removed.
+    virtual void removePreset(const int index) = 0;
 
     //Provides a standard method to provide program feedback.
     void updateOutput(QString output);
@@ -145,7 +147,8 @@ public slots:
     void deletePreset();
 
     //Pure Virtual Slot that is triggered when the combo box selection is changed.
-    virtual void updatePreset(int index) = 0;
+    ////index(int): refers to the index that will be applied.
+    virtual void updatePreset(const int index) = 0;
 };
 
 #endif // TAB_H

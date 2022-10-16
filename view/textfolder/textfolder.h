@@ -79,10 +79,12 @@ protected:
 
     //Creates and stores preconfigurations.
     //Overrides base class implementation.
+    ////index(int): refers to the new preset value.
     void createPreset(const int index) override;
 
     //Removes and deletes preconfigurations.
     //Overrides base class implementation.
+    ////index(int): refers to the value of the preset to be removed.
     void removePreset(const int index) override;
 
 private:
@@ -143,6 +145,7 @@ public slots:
 
     //Implementation that adjusts the preconfigured selection based on current settings.
     //Triggered by changing settings.
+    ////index(int): refers to the index that will be applied.
     void updatePreset(const int index) override;
 
     //Copies a folder structure into the view.

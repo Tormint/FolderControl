@@ -153,7 +153,7 @@ void Tab::placeObjects()
 //Should be used along with its derived implementations.
 void Tab::connectObjects()
 {
-    QObject::connect(cbPreset, SIGNAL(currentIndexChanged(int)), this, SLOT(updatePreset(int)));
+    QObject::connect(cbPreset, SIGNAL(currentIndexChanged(int)), this, SLOT(updatePreset(const int)));
 
     QObject::connect(pbSave, SIGNAL(clicked(bool)), this, SLOT(savePreset()));
     QObject::connect(pbDelete, SIGNAL(clicked(bool)), this, SLOT(deletePreset()));

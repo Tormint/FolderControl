@@ -34,6 +34,8 @@
 #include <QObject>
 #include <QPixmap>
 #include <QLabel>
+#include <QFrame>
+#include <QHBoxLayout>
 
 //Dialog containing infromation about Qt Framework.
 class AboutQt : public Window
@@ -62,6 +64,14 @@ protected:
     //Extends the functions of the base class implementations.
     void placeObjects();
 
+    ////Connects the objects to their functional and managing code sources.
+    ////Extends the functions of the base class implementations.
+    //virtual void connectObjects();
+
+    ////Disconnects objects from their functional and managing code sources.
+    ////Extends the functions of the base class implementations.
+    //virtual void disconnectObjects();
+
 private:
 
     //View Objects:
@@ -76,6 +86,10 @@ private:
            *lCompiler,
            *lCopyright,
            *lUrl;
+
+    QFrame *fFrame;
+
+    QHBoxLayout *hblFrame;
 
 };
 

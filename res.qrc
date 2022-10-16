@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>img/qtlogo.png</file>
+        <file>img/paypal.png</file>
+        <file>img/donate_btn1.png</file>
+        <file>img/donate_btn2.png</file>
     </qresource>
 </RCC>

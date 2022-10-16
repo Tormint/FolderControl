@@ -40,13 +40,17 @@ void AboutQt::createObjects()
 
     lLogo = new QLabel();
 
-    lCreatorT = new QLabel("<b><u>IDE Used:</u></b>");
+    lCreatorT = new QLabel("<b>IDE Used:</b>");
     lCreator = new QLabel("Qt Creator 7.0.0 [Qt 6.2.3 (Revision 638b93591b)]");
-    lVersionT = new QLabel("<b><u>Compiled Using:</u></b>");
+    lVersionT = new QLabel("<b>Compiled Using:</b>");
     lVersion = new QLabel("Qt C++ 6.3.0");
     lCompiler = new QLabel("MinGW-64 11.2.0");
     lCopyright = new QLabel("<b><i>Copyright 2008-2022 The Qt Company Ltd. All rights reserved.</i></b>");
-    lUrl = new QLabel("<a href=https://www.qt.io/>www.qt.io</a>");
+    lUrl = new QLabel("<a href=\"https://www.qt.io/\">www.qt.io</a>");
+
+    fFrame = new QFrame();
+
+    hblFrame = new QHBoxLayout();
 
     return;
 }
@@ -62,7 +66,10 @@ void AboutQt::configureObjects()
     dWindow->setWindowTitle("About Qt");
 
     lUrl->setOpenExternalLinks(true);
-    lUrl->setTextInteractionFlags(Qt::TextBrowserInteraction);
+    lUrl->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+
+    fFrame->setFrameStyle(QFrame::Panel);
+    fFrame->setFrameShadow(QFrame::Sunken);
 
     return;
 }
@@ -75,11 +82,14 @@ void AboutQt::placeObjects()
 
     if (!pLogo->isNull())
     {
-        pLogo->scaled(QSize(80, 80), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        lLogo->setPixmap(*pLogo);
-        glMainLayout->addWidget(lLogo, 0, 0, 3, 3);
+        lLogo->setPixmap(pLogo->scaled(QSize(100, 100), Qt::KeepAspectRatio, Qt::SmoothTransformation));
     }
 
+    fFrame->setLayout(hblFrame);
+
+    hblFrame->addWidget(lLogo);
+
+    glMainLayout->addWidget(fFrame, 0, 0, 3, 3);
     glMainLayout->addWidget(lCreatorT, 0, 3, 1, 1, Qt::AlignLeft);
     glMainLayout->addWidget(lCreator, 0, 4, 1, 2, Qt::AlignRight);
     glMainLayout->addWidget(lVersionT, 1, 3, 1, 1, Qt::AlignLeft);
@@ -91,13 +101,17 @@ void AboutQt::placeObjects()
     return;
 }
 
+////Connects the objects to their functional and managing code sources.
+////Extends the functions of the base class implementations.
 //void AboutQt::connectObjects()
 //{
 //    Window::connectObjects();
 //
 //    return;
 //}
-//
+
+////Disconnects objects from their functional and managing code sources.
+////Extends the functions of the base class implementations.
 //void AboutQt::disconnectObjects()
 //{
 //    Window::disconnectObjects();
